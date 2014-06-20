@@ -1,0 +1,90 @@
+###
+# app configuration
+# http://docs.pylonsproject.org/projects/pyramid/en/latest/narr/environment.html
+###
+
+[app:main]
+use = egg:caliopen.web
+
+pyramid.reload_templates = true
+pyramid.debug_authorization = false
+pyramid.debug_notfound = false
+pyramid.debug_routematch = false
+pyramid.default_locale_name = en
+pyramid.includes =
+    pyramid_jinja2
+    pyramid_kvs
+    cornice
+    caliopen.core.config
+    caliopen.api
+    caliopen.web
+    caliopen.web.views.app
+
+
+kvs.session = {"kvs": "redis",
+               "key_name": "session_id",
+               "session_type": "cookie",
+                "ttl": 300,
+                "key_prefix": "session::"}
+
+
+# By default, the toolbar only appears for clients from IP addresses
+# '127.0.0.1' and '::1'.
+# debugtoolbar.hosts = 127.0.0.1 ::1
+
+###
+# Angular app settings.
+###
+
+caliopen.ng.path = %(here)s/../caliopen.ng/build/
+
+caliopen.config =
+    global:%(here)s/caliopen.yaml
+
+###
+# wsgi server configuration
+###
+
+[server:main]
+use = egg:waitress#main
+host = 0.0.0.0
+port = 6543
+
+###
+# logging configuration
+# http://docs.pylonsproject.org/projects/pyramid/en/latest/narr/logging.html
+###
+
+[loggers]
+keys = root, caliopen, waitress
+
+[handlers]
+keys = console
+
+[formatters]
+keys = generic
+
+[logger_root]
+level = INFO
+handlers = console
+
+[logger_caliopen]
+level = DEBUG
+handlers = console
+qualname = caliopen
+propagate = 0
+
+[logger_waitress]
+level = DEBUG
+handlers = console
+qualname = waitress
+propagate = 0
+
+[handler_console]
+class = StreamHandler
+args = (sys.stderr,)
+level = NOTSET
+formatter = generic
+
+[formatter_generic]
+format = %(asctime)s %(levelname)-5.5s [%(name)s][%(threadName)s] %(message)s
