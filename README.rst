@@ -19,12 +19,12 @@ Currently, the minimum backend requirements is:
 
 This documentation don't cover how to install those products on your distro.
 
-Then you have to clone every component of caliop.
+Then you have to clone every component of caliopen.
 
 ::
 
-    mkdir caliop
-    cd caliop
+    mkdir caliopen
+    cd caliopen
     git clone https://github.com/CaliOpen/caliopen.config.git
     git clone https://github.com/CaliOpen/caliopen.core.git
     git clone https://github.com/CaliOpen/caliopen.messaging.git
