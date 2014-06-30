@@ -16,7 +16,7 @@ cqlengine==0.12.0
 dateutils==0.6.6
 gevent==1.0.1
 greenlet==0.4.2
-gsmtpd==0.0.3
+git+https://github.com/ekini/gsmtpd.git
 kombu==3.0.19
 pycparser==2.10
 pyramid==1.4.6
