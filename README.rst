@@ -19,6 +19,11 @@ Currently, the minimum backend requirements is:
 
 This documentation don't cover how to install those products on your distro.
 
+.. note::
+
+    rabbitmq broker is optional depending on delivery mode set to direct or not
+    in caliopen.yaml configuration.
+
 Then you have to clone every component of caliopen.
 
 ::
@@ -71,7 +76,7 @@ repository.
     grunt build
     cd ..
 
-..note:
+..note::
 
     "nactivate" is inspired by virtualenv to don't use bower globally. 
     the command ndeactivate will deactivate it.
@@ -111,7 +116,8 @@ Then import a mailbox ::
 
 .. note::
 
-    This will push message in the rabbitmq broker
+    This will push message in the rabbitmq broker if direct keyword is set to False
+    in delivery_agent configuration section.
 
 
 
@@ -121,6 +127,8 @@ Run the delivery agent ::
 
 
 .. note::
+
+    Only apply if direct set to False in delivery_agent configuration section.
 
     Currently the delivery agent consume message over rabbitmq.
     The delivery aims to be a daemon but for developer it run in it's own
