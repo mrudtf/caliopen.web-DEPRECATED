@@ -69,6 +69,8 @@ Compile angular app::
 The web ui has been developed using AngularJS and live in it's own
 repository.
 
+::
+
     cd caliopen.ng
     source nactivate
     npm install
