@@ -28,6 +28,13 @@ interfaces:
             IRawMail: caliopen.storage.data.cassandra.RawMail
             IUser: caliopen.storage.data.cassandra.User
             IContact: caliopen.storage.data.cassandra.Contact
+            IContactOrganization: caliopen.storage.data.cassandra.ContactOrganization
+            IContactPostalAddress: caliopen.storage.data.cassandra.ContactPostalAddress
+            IContactEmail: caliopen.storage.data.cassandra.ContactEmail
+            IContactPhone: caliopen.storage.data.cassandra.ContactPhone
+            IContactIm: caliopen.storage.data.cassandra.ContactIm
+            IContactSocialIdentity: caliopen.storage.data.cassandra.ContactSocialIdentity
+            IContactPublicKey: caliopen.storage.data.cassandra.ContactPublicKey
             IContactLookup: caliopen.storage.data.cassandra.ContactLookup
             ICounter: caliopen.storage.data.cassandra.Counter
             IMessage: caliopen.storage.data.cassandra.Message
