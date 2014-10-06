@@ -16,11 +16,13 @@ from mailbox import mbox, Maildir
 
 log = logging.getLogger(__name__)
 
+
 def import_email(email, import_path, format, **kwargs):
 
     from caliopen.core.user import User
     from caliopen.core.contact import Contact, ContactLookup
     from caliopen.core.mail import MailMessage
+    from caliopen.core.parameters.contact import NewContact, NewEmail
     from caliopen.smtp.agent import DeliveryAgent
 
     AVATAR_DIR = '../../../caliopen.ng/src/assets/images/avatars'
@@ -70,6 +72,10 @@ def import_email(email, import_path, format, **kwargs):
 
                     if os.path.isfile('%s/%s.png' % (AVATAR_DIR, name)):
                         infos.update({'avatar': '%s.png' % name})
-                    Contact.create(user, infos)
+                    contact = NewContact()
+                    contact.family_name = name
+                    email = NewEmail()
+                    email.address = alias
+                    Contact.create(user, contact, emails=[email])
         res = agent.process(mailfrom, rcpts, msg.mail.as_string())
         log.info('Process result %r' % res)
