@@ -63,10 +63,10 @@ def main(args=sys.argv):
     sp_create_user.set_defaults(func=create_user)
     sp_create_user.add_argument('-e', dest='email', help='user email')
     sp_create_user.add_argument('-p', dest='password', help='password')
-    sp_create_user.add_argument('-f', dest='first_name',
-                                help='user first name')
-    sp_create_user.add_argument('-l', dest='last_name',
-                                help='user last name')
+    sp_create_user.add_argument('-g', dest='given_name',
+                                help='user given name')
+    sp_create_user.add_argument('-f', dest='family_name',
+                                help='user family name')
 
     sp_shell = subparsers.add_parser('shell')
     sp_shell.set_defaults(func=shell)
