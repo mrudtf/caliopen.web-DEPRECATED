@@ -42,5 +42,4 @@ setup(name='caliopen.web',
       test_suite="caliopen.web.tests",
       entry_points={
           'paste.app_factory': ['main = caliopen.web:main'],
-          'console_scripts': 'caliopen = caliopen.web.bin.cli:main',
       })

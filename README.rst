@@ -38,6 +38,7 @@ Then you have to clone every component of caliopen.
     git clone https://github.com/CaliOpen/caliopen.api.git
     git clone https://github.com/CaliOpen/caliopen.ng.git
     git clone https://github.com/CaliOpen/caliopen.web.git
+    git clone https://github.com/CaliOpen/caliopen.cli.git
 
 .. note::
 
@@ -51,7 +52,7 @@ Then you should create virtualenv and activate it.
 
     source venv/bin/activate
 
-    for d in caliopen.config caliopen.core caliopen.messaging caliopen.smtp caliopen.storage caliopen.api caliopen.web
+    for d in caliopen.config caliopen.core caliopen.messaging caliopen.smtp caliopen.storage caliopen.api caliopen.web caliopen.cli
     do
       cd $d
       python setup.py develop
@@ -91,53 +92,17 @@ Configure the caliopen website.
 
 ::
 
-    cd caliopen.web
+    cd caliopen.cli
 
 
-Copy the sample development.ini file to roll your own configuration parameters::
+Refer to caliopen.cli README instruction to setup storage, create an user
+and import emails
 
-    cp development.ini.sample development.ini
-
-
-Setup the storage database::
-
-    caliopen -f development.ini.sample setup
-
-
-Create a user::
-
-    caliopen create_user --help
-    caliopen -f development.ini create_user -e imported@email -p password -f firstname -l lastname
-
-
-Then import a mailbox ::
-
-    caliopen import --help
-    caliopen -f development.ini.sample import -p ~/gandiv4 -e  imported@email -f maildir
-
-
-.. note::
-
-    This will push message in the rabbitmq broker if direct keyword is set to False
-    in delivery_agent configuration section.
-
-
-
-Run the delivery agent ::
-
-    python caliopen/web/bin/deliver.py -f development.ini
-
-
-.. note::
-
-    Only apply if direct set to False in delivery_agent configuration section.
-
-    Currently the delivery agent consume message over rabbitmq.
-    The delivery aims to be a daemon but for developer it run in it's own
-    terminal.
-    You can shutdown with ctrl-c when your rabbitmq queue is empty
 
 
 Run the web interface ::
+
+    cd ..
+    cd caliopen.web
 
     pserve development.ini
