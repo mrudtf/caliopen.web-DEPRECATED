@@ -19,6 +19,7 @@ pyramid.includes =
     caliopen.core.config
     caliopen.web.views.app
     caliopen.web.views.api
+    caliopen.web.views.user
 
 # Regsiter jinja2 helpers
 jinja2.filters =
