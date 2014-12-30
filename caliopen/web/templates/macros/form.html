@@ -1,0 +1,24 @@
+{% macro global_errors(errors=[]) %}
+    {% if errors.globals|length %}
+    <div class="form_error_container--global">
+        {% for error in errors.globals %}
+            <p class="form_error_item--global">
+                {{error}}
+            </p>
+        {% endfor %}
+    </div>
+    {% endif %}
+{% endmacro %}
+
+{% macro field_errors(fieldname, errors=[]) %}
+    {% if errors[fieldname]|length %}
+    <div class="form_error_container--field">
+        {% for error in errors[fieldname] %}
+            <p class="form_error_item--field">
+                {{error}}
+            </p>
+        {% endfor %}
+    </div>
+    {% endif %}
+{% endmacro %}
+

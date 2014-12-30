@@ -1,0 +1,24 @@
+{% import "macros/form.html" as form %}
+
+<form action="{{ 'user.signup' | route_path }}" method="POST" accept-charset="utf-8">
+    {{ form.global_errors(errors) }}
+    <p>
+    {{ form.field_errors('username', errors) }}
+    <label for="username">username</label><input type="text" name="username" value="{{username}}" id="username">
+    </p>
+    <p>
+    {{ form.field_errors('email', errors) }}
+    <label for="email">email</label><input type="text" name="email" value="{{email}}" id="email">
+    </p>
+    <p>
+    {{ form.field_errors('password', errors) }}
+    <label for="password">password</label><input type="password" name="password" value="" id="password">
+    </p>
+    <p>
+    {{ form.field_errors('password_repeat', errors) }}
+    <label for="password_repeat">password again</label><input type="password" name="password_repeat" value="" id="password_repeat">
+    </p>
+
+    <p><input type="submit" value="Continue →"></p>
+</form>
+
