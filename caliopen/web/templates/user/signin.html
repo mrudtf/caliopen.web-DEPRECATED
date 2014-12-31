@@ -1,5 +1,7 @@
+{% extends "user/landingLayout.html" %}
 {% import "macros/form.html" as form %}
 
+{% block content %}
 <form action="{{ 'user.signin' | route_path }}" method="POST" accept-charset="utf-8">
     {{ form.global_errors(errors) }}
     <p>
@@ -13,4 +15,4 @@
 
     <p><input type="submit" value="Continue →"></p>
 </form>
-
+{% endblock %}
