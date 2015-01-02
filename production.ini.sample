@@ -19,6 +19,13 @@ pyramid.includes =
     caliopen.core.config
     caliopen.web.views.app
     caliopen.web.views.api
+    caliopen.web.views.user
+
+# Regsiter jinja2 helpers
+jinja2.filters =
+    route_path = pyramid_jinja2.filters:route_path_filter
+    route_url = pyramid_jinja2.filters:route_url_filter
+    static_url = pyramid_jinja2.filters:static_url_filter
 
 
 
