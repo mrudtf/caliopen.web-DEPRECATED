@@ -1,15 +1,15 @@
 caliopen.web
 ============
 
-caliopen web application.
+CaliOpen Web Application
 
 
 Installation
 ------------
 
-This install is about how to install caliopen for a development usage.
+This how-to is for installing caliopen for development purposes.
 
-Currently, the minimum backend requirements is:
+The backend requirements are currently:
 
  - redis (or memcache)
  - rabbitmq
@@ -17,14 +17,14 @@ Currently, the minimum backend requirements is:
  - cassandra
  - python2.7 with virtualenv
 
-This documentation don't cover how to install those products on your distro.
+Note that this documentation does not cover installing these products on your distro.
 
 .. note::
 
     rabbitmq broker is optional depending on delivery mode set to direct or not
     in caliopen.yaml configuration.
 
-Then you have to clone every component of caliopen.
+Clone every component of caliopen.
 
 ::
 
@@ -42,14 +42,15 @@ Then you have to clone every component of caliopen.
 
 .. note::
 
-    if you want to create pull request you should fork component and
-    clone from your own github account.
+    If you would like to submit pull requests, please fork the proper repo(s) and
+    clone it (them) from your own github account.
 
 
-Then you should create virtualenv and activate it.
+Create a virtualenv and activate it.
 
 ::
 
+    virtualenv venv
     source venv/bin/activate
 
     for d in caliopen.config caliopen.core caliopen.messaging caliopen.smtp caliopen.storage caliopen.api caliopen.web caliopen.cli
@@ -67,8 +68,7 @@ Then you should create virtualenv and activate it.
 
 Compile angular app::
 
-The web ui has been developed using AngularJS and live in it's own
-repository.
+The web UI is built in AngularJS. It lives in its own repository.
 
 ::
 
@@ -79,13 +79,12 @@ repository.
     grunt build
     cd ..
 
-..note::
+.. note::
 
-    "nactivate" is inspired by virtualenv to don't use bower globally. 
-    the command ndeactivate will deactivate it.
+    "nactivate" is inspired by virtualenv to not use bower globally.
+    Command ndeactivate will deactivate it.
 
-    This is not mandatory, you can use the way you use bower if you
-    prefer.
+    This is not mandatory, you can use bower the way you like.
 
 
 Configure the caliopen website.
@@ -95,8 +94,8 @@ Configure the caliopen website.
     cd caliopen.cli
 
 
-Refer to caliopen.cli README instruction to setup storage, create an user
-and import emails
+Refer to caliopen.cli's README to set up storage, create a user
+and import emails.
 
 
 
