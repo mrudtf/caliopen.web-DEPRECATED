@@ -80,7 +80,7 @@ def _validate_authentication_credentials(params):
         # error if password does not match
         raise CredentialException()
 
-    return value;
+    return user;
 
 
 def validate(username, password):
@@ -115,31 +115,4 @@ def validate(username, password):
         log.debug(exc);
         # this is an unexpected error, let's rethrow
         raise exc
-
-
-
-if __name__ == '__main__':
-
-
-    from pyramid import testing
-    import unittest
-    class ValidationTest(unittest.TestCase):
-
-        def setUp(self):
-            self.config = testing.setUp()
-
-        def tearDown(self):
-            testing.tearDown()
-
-        def should_reject_empty_username (self):
-            """
-            Retrieve the list of messages of a thread.
-            """
-            with self.assertRaise(ValidationError) as cm:
-                validate(username="", password="Foo")
-
-            exception = cm.exception
-            self.assertEqual(the_exception.messages, '')
-
-    unittest.main()
 

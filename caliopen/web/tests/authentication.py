@@ -4,24 +4,95 @@ import unittest
 import json
 
 from pyramid import testing
+from schematics.exceptions import ValidationError
 
 from caliopen.web.authentication.validation import validate
+from .compat import mock
 
+class TestAuthenticationValidate(unittest.TestCase):
 
-class TestViewSessions(unittest.TestCase):
     def setUp(self):
         self.config = testing.setUp()
 
     def tearDown(self):
         testing.tearDown()
 
+    def assertHasError(self, auth, fieldName, errorMessage=None):
+        self.assertIn(fieldName, auth.errors)
+        self.assertTrue(len(auth.errors[fieldName]) > 0)
+        if errorMessage:
+            self.assertIn(errorMessage, auth.errors[fieldName])
+
     def test_should_reject_empty_username(self):
         """
-        Retrieve the list of messages of a thread.
+        Should reject empty username.
         """
-        with self.assertRaise(ValidationError) as cm:
-            validate(username="", password="Foo")
+        for val in [ None, ""]:
+            auth = validate(username=val, password="Foo")
+            self.assertFalse(auth.success)
+            self.assertIsNone(auth.user)
+            self.assertHasError(auth, fieldName='username')
 
-        exception = cm.exception
-        self.assertEqual(the_exception.messages, '')
+    def test_should_reject_empty_password(self):
+        """
+        Should reject empty password.
+        """
+        for val in [ None, ""]:
+            auth = validate(username="julien.muetton@gandi.net", password=val)
+            self.assertFalse(auth.success)
+            self.assertIsNone(auth.user)
+            self.assertHasError(auth, fieldName='password')
 
+    def test_should_reject_if_internal_errors(self):
+        """
+        Should reject invalid credentials
+        """
+        # Mock User.authenticate method
+        # to raise an un expected Exception
+        User = mock.Mock()
+        User.authenticate = mock.Mock(side_effect=Exception)
+
+        with mock.patch('caliopen.web.authentication.validation.User', User):
+            auth = validate(username="John", password="Doe")
+            # ensure mock has been called
+            User.authenticate.assert_call_once_with("John", "Doe")
+            self.assertFalse(auth.success, 'User should not be authenticated')
+
+    def test_should_reject_if_credentials_are_invalid(self):
+        """
+        Should reject invalid credentials
+        """
+        # Mock User.authenticate method
+        # to raise a ValidationError
+        User = mock.Mock()
+        User.authenticate = mock.Mock(side_effect=ValidationError)
+
+        with mock.patch('caliopen.web.authentication.validation.User', User):
+            auth = validate(username="John", password="Doe")
+            # ensure mock has been called
+            User.authenticate.assert_call_once_with("John", "Doe")
+            self.assertFalse(auth.success, 'User should not be authenticated')
+
+    def test_should_authenticate_if_credentials_are_valid(self):
+        """
+        Should accept valid credentials
+        """
+        # Mock user object
+        authenticated_user = mock.Mock()
+        authenticated_user.to_api = mock.Mock(return_value={})
+
+        # Mock User.authenticate method
+        # to return mock user
+        User = mock.Mock()
+        User.authenticate = mock.Mock(return_value=authenticated_user)
+
+        with mock.patch('caliopen.web.authentication.validation.User', User):
+            auth = validate(username="John", password="Doe")
+            # Assert we called user.to_api()
+            authenticated_user.to_api.assert_call_once()
+            # assert mock was called
+            User.authenticate.assert_call_once_with("John", "Doe")
+            self.assertTrue(auth.success, 'User should be authenticated')
+
+if __name__ == '__main__':
+    unittest.main()
