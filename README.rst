@@ -1,6 +1,9 @@
 caliopen.web
 ============
 
+.. image:: https://travis-ci.org/CaliOpen/caliopen.web.svg?branch=features%2Fuser-account
+    :target: https://travis-ci.org/CaliOpen/caliopen.web
+
 CaliOpen Web Application is the HTTP entry point of CaliOpen infrastructure.
 
 It requires some other CaliOpen modules.
@@ -22,9 +25,11 @@ To install local dependencies, use [pip](https://pip.pypa.io/en/latest/):
 
 Note that caliopen.web depends on:
 
-* [caliopen.core](https://github.com/caliopen/caliopen.core),
-* [caliopen.api](https://github.com/caliopen/caliopen.api),
 * [caliopen.config](https://github.com/caliopen/caliopen.config)
+* [caliopen.storage](https://github.com/caliopen/caliopen.storage),
+* [caliopen.core](https://github.com/caliopen/caliopen.core),
+* [caliopen.messaging](https://github.com/caliopen/caliopen.messaging),
+* [caliopen.api](https://github.com/caliopen/caliopen.api),
 
 Tests
 -----
