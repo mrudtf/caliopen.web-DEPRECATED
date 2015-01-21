@@ -2,13 +2,12 @@
 
 from __future__ import unicode_literals
 
-from collections import namedtuple;
-
 from pyramid.httpexceptions import HTTPFound
 from pyramid.view import view_defaults
 from pyramid.view import view_config
 
-from caliopen.core.user import User
+from caliopen.web.authentication.authenticate import authenticate_user
+from caliopen.web.authentication.validation import validate
 
 import logging
 log = logging.getLogger(__name__)
@@ -19,20 +18,25 @@ class SinginView(object):
     def __init__(self, request):
         self.request = request
 
+        self.username = request.params['username'] if 'username' in request.params else ''
+        self.password = request.params['password'] if 'password' in request.params else ''
+
     @view_config(request_method='GET', renderer='user/signin.html')
     def signin(self):
-        username = sanitize_username(self.request)
+        """Display the signin form"""
+
         return {
-                'username': username,
+                # Retrieve username if any
+                'username': self.username,
                 'errors': None
             };
 
     @view_config(request_method='POST', renderer='user/signin.html')
     def handle_signin(self):
+        """Validate the user request"""
+
         # Validate request
-        username = sanitize_username(self.request)
-        password = sanitize_password(self.request)
-        authentication = validate_signin_params(username, password)
+        authentication = validate(self.username, self.password)
 
         # Handle successful request
         if authentication.success is True:
@@ -43,51 +47,8 @@ class SinginView(object):
         # Handle error request
         self.request.status_int = 400
         return {
-                'username': username,
+                'username':  self.username,
                 'errors': authentication.errors
             }
 
 
-
-def sanitize_username(request):
-    """Sanitize username parameter from request"""
-    if 'username' in request.params:
-        return request.params['username']
-    return ''
-
-def sanitize_password(request):
-    """Sanitize password parameter from request"""
-    if 'password' in request.params:
-        return request.params['password']
-    return ''
-
-def validate_signin_params(username, password):
-    """Retrieve matching username and password.
-    If no match is found, then return errors.
-
-    @param string username
-    @param string password
-    @return Authentication
-    """
-    authentication = namedtuple('Authentication', ['success', 'user', 'errors'])
-
-    try:
-        user = User.authenticate(username, password)
-        user = user.to_api()
-        return  authentication(success=True, user=user, errors=None)
-
-    except (KeyError, Exception), exc:
-        # prepare errors
-        errors = {
-                'globals': [str(exc)],
-                'username': [],
-                'password': []
-            }
-        return authentication(success=False, errors=errors, user=None)
-
-
-def authenticate_user(request, user):
-    """Persist provided user authentication into session
-    """
-    # activate user in session
-    request.session['user'] = user['id']
