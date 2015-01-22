@@ -34,11 +34,12 @@ kvs.session = {"kvs": "redis",
                "session_type": "cookie",
                 "ttl": 300,
                 "key_prefix": "session::"}
+
 ###
-# Angular app settings.
+# UI related settings
 ###
 
-caliopen.ng.path = ../../caliop.ng/bin
+caliopen.assets.path = %(here)s/../ui/build/
 
 caliopen.config =
     global:%(here)s/caliop.yaml

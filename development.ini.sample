@@ -41,10 +41,10 @@ kvs.session = {"kvs": "redis",
 # debugtoolbar.hosts = 127.0.0.1 ::1
 
 ###
-# Angular app settings.
+# UI related settings
 ###
 
-caliopen.ng.path = %(here)s/../caliopen.ng/build/
+caliopen.assets.path = %(here)s/../ui/build/
 
 caliopen.config =
     global:%(here)s/caliopen.yaml

@@ -14,11 +14,5 @@ def includeme(config):
     template_path = join(dirname(abspath(__file__)), 'templates')
     config.add_jinja2_search_path(template_path, name='.html')
 
-    # XXX should be removed
-    # configure templates dir (angular build dir)
-    
-    template_path = settings['caliopen.ng.path']
-    config.add_jinja2_search_path(template_path, name='.html')
-
-    # configure static dir on the same dir (angular build dir)
-    config.add_static_view('/static', template_path)
+    # Retrieve assets path.
+    assets_path = settings['caliopen.assets.path']
