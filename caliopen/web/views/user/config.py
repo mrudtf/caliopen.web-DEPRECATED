@@ -9,7 +9,7 @@ def includeme(config):
     """Add user authentication and creation related views.
     Handles subscription, connection and password retrieval.
     """
-    log.debug('Declare routes')
+    log.debug('Declare open.web.user routes')
 
     config.add_route('user.signin', '/signin')
     config.add_route('user.signout', '/signout')
