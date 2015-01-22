@@ -1,10 +1,10 @@
 from __future__ import unicode_literals
 
-from pyramid.httpexceptions import HTTPFound
 from pyramid.view import view_defaults
 from pyramid.view import view_config
 
 from caliopen.web.authentication.authenticate import is_user_authenticated
+from caliopen.web.views import redirect
 
 import logging
 log = logging.getLogger(__name__)
@@ -26,9 +26,10 @@ def public_index(request):
     If request is authenticated, redirect to index.
     Redirect to signin page otherwise.
     """
-    if is_user_authenticated(request):
-        url = request.route_url('app.index')
-    else:
-        url = request.route_url('user.signin')
 
-    return HTTPFound(location=url)
+    if is_user_authenticated(request):
+        route = 'app.index';
+    else:
+        route = 'user.signin';
+
+    return redirect(request, route)

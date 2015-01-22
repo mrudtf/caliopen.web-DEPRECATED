@@ -6,6 +6,7 @@ from pyramid.httpexceptions import HTTPFound
 from pyramid.view import view_defaults
 from pyramid.view import view_config
 
+from caliopen.web.views import redirect
 from caliopen.web.authentication.authenticate import authenticate_user
 from caliopen.web.authentication.validation import validate
 
@@ -41,8 +42,7 @@ class SinginView(object):
         # Handle successful request
         if authentication.success is True:
             authenticate_user(self.request, authentication.user)
-            url = self.request.route_url('user.redirect_after_signin')
-            return HTTPFound(location=url)
+            return redirect(self.request, 'user.redirect_after_signin')
 
         # Handle error request
         self.request.status_int = 400

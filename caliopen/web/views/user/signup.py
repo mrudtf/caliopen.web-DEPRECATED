@@ -4,10 +4,10 @@ from __future__ import unicode_literals
 
 from collections import namedtuple;
 
-from pyramid.httpexceptions import HTTPFound
 from pyramid.view import view_defaults
 from pyramid.view import view_config
 
+from caliopen.web.views import redirect
 from caliopen.core.user import User
 from caliopen.core.parameters.user import NewUser
 from caliopen.core.parameters.contact import NewContact
@@ -50,8 +50,7 @@ class SinginView(object):
         # Handle successful request
         if creation.success is True:
             authenticate_user(self.request, creation.user)
-            url = self.request.route_url('user.redirect_after_signup')
-            return HTTPFound(location=url)
+            return redirect(self.request, 'user.redirect_after_signup')
 
         # Handle error request
         self.request.status_int = 400
@@ -61,6 +60,9 @@ class SinginView(object):
             }
 
 
+# FIXME
+# Migrate validation logic in `caliopen.web.user_creation.validation`
+# Just as `caliopen.web.authentication.validation`
 
 def sanitize_username(request):
     """Sanitize username parameter from request"""
