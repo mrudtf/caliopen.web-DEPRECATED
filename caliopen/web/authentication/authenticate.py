@@ -18,12 +18,29 @@
 def authenticate_user(request, user):
     """
     Persist provided user authentication into session
+
+    @param pyramid.request request the current request
     """
     # activate user in session
+    # FIXME this should leverage pyramid authentication
+    # process
     request.session['user'] = user['id']
 
 def unauthenticate_user(request):
     """
     Clear session and user authentication
+
+    @param pyramid.request request the current request
     """
     request.session.invalidate()
+
+def is_user_authenticated(request):
+    """
+    Check wether the user is authenticatedor not.
+
+    @param pyramid.request request the current request
+    @return Boolean
+    """
+    # FIXME this should leverage pyramid authentication
+    # process
+    return request.session['user']
