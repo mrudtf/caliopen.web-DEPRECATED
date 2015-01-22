@@ -11,11 +11,11 @@ def includeme(config):
     """
     log.debug('Declare open.web.user routes')
 
-    config.add_route('user.signin', '/signin')
-    config.add_route('user.signout', '/signout')
-    config.add_route('user.signup', '/signup')
-    config.add_route('user.password_resend', '/login/password-resend')
-    config.add_route('user.redirect_after_signout', '/signin')
+    config.add_route('user.signin', '/signin/')
+    config.add_route('user.signout', '/signout/')
+    config.add_route('user.signup', '/signup/')
+    config.add_route('user.password_resend', '/login/password-resend/')
+    config.add_route('user.redirect_after_signout', '/signin/')
     config.add_route('user.redirect_after_signin', '/')
     config.add_route('user.redirect_after_signup', '/')
 
