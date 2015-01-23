@@ -24,7 +24,7 @@ def authenticate_user(request, user):
     # activate user in session
     # FIXME this should leverage pyramid authentication
     # process
-    request.session['user'] = user['id']
+    request.session['user'] = user['user_id']
 
 def unauthenticate_user(request):
     """

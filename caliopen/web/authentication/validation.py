@@ -15,6 +15,7 @@ from schematics.exceptions import ValidationError
 from collections import namedtuple;
 
 from caliopen.core.user import User
+from caliopen.core.user import ReturnUser
 from caliopen.core.user import CredentialException
 
 from pyramid.i18n import TranslationString
@@ -69,7 +70,7 @@ def _validate_authentication_credentials(params):
     """
     try:
         user = User.authenticate(params['username'], params['password'])
-        user = user
+        user = ReturnUser.build(user).serialize()
 
     except ValidationError, e:
         raise ValidationError(e.messages)
