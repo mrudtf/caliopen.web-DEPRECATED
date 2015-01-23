@@ -15,14 +15,13 @@ from schematics.exceptions import ValidationError
 from collections import namedtuple;
 
 from caliopen.core.user import User
+from caliopen.core.user import CredentialException
 
 from pyramid.i18n import TranslationString
 
 import logging
 log = logging.getLogger(__name__)
 
-class CredentialException(Exception):
-    pass
 
 MESSAGES = {
     'field_required': 'This field is required'
@@ -70,15 +69,19 @@ def _validate_authentication_credentials(params):
     """
     try:
         user = User.authenticate(params['username'], params['password'])
-        user = user.to_api()
+        user = user
 
     except ValidationError, e:
         raise ValidationError(e.messages)
 
+    except CredentialException, e:
+        raise CredentialException
+
     except Exception, e:
+        log.debug(exc)
         # It appears the User.authenticate method throws an Exception
         # error if password does not match
-        raise CredentialException()
+        raise e
 
     return user;
 
