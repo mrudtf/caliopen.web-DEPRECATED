@@ -8,7 +8,7 @@ CaliOpen Web Application is the HTTP entry point of CaliOpen infrastructure.
 
 It requires some other CaliOpen modules.
 
-Refer to [caliopen.github.io](http://caliopen.github.io/) for full installation
+Refer to `caliopen.github.io <http://caliopen.github.io/>`_ for full installation
 and development instructions.
 
 Installation
@@ -16,25 +16,25 @@ Installation
 
 > Discalaimer: Those instructionsare for this module only. If you are looking
 > for how to install a full CaliOpen service, you should go to
-> [caliopen.github.io](http://caliopen.github.io/)
+> `caliopen.github.io <http://caliopen.github.io/>`_
 
-To install local dependencies, use [pip](https://pip.pypa.io/en/latest/):
+To install local dependencies, use `pip <https://pip.pypa.io/en/latest/>`_:
 
 :::
     pip install -e ".[dev,test]"
 
 Note that caliopen.web depends on:
 
-* [caliopen.config](https://github.com/caliopen/caliopen.config)
-* [caliopen.storage](https://github.com/caliopen/caliopen.storage),
-* [caliopen.core](https://github.com/caliopen/caliopen.core),
-* [caliopen.messaging](https://github.com/caliopen/caliopen.messaging),
-* [caliopen.api](https://github.com/caliopen/caliopen.api),
+* `caliopen.config <https://github.com/caliopen/caliopen.config>`_
+* `caliopen.storage <https://github.com/caliopen/caliopen.storage>`_,
+* `caliopen.core <https://github.com/caliopen/caliopen.core>`_,
+* `caliopen.messaging <https://github.com/caliopen/caliopen.messaging>`_,
+* `caliopen.api <https://github.com/caliopen/caliopen.api>`_,
 
 Tests
 -----
 
-Tests are launched using [nose](https://nose.readthedocs.org/en/latest/).
+Tests are launched using `nose <https://nose.readthedocs.org/en/latest/>`_.
 
 :::
     nosetests -sxv gandi/web/tests/*.py
