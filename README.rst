@@ -14,9 +14,10 @@ and development instructions.
 Installation
 ------------
 
-> Discalaimer: Those instructionsare for this module only. If you are looking
-> for how to install a full CaliOpen service, you should go to
-> `caliopen.github.io <http://caliopen.github.io/>`_
+:::
+    Discalaimer: Those instructions are for this module only. If you are looking
+    for how to install a full CaliOpen service, you should go to
+    `caliopen.github.io <http://caliopen.github.io/>`_
 
 To install local dependencies, use `pip <https://pip.pypa.io/en/latest/>`_:
 
