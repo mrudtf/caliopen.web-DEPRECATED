@@ -2,7 +2,12 @@
 
 from __future__ import unicode_literals
 
+from urlparse import urlparse
+
 from pyramid.httpexceptions import HTTPFound
+
+import logging
+log = logging.getLogger(__name__)
 
 def redirect(request, route):
     """Redirect to route name
@@ -12,9 +17,18 @@ def redirect(request, route):
     :returns: pyramid.httpexceptions.HTTPFound
 
     """
-    scheme = request.headers.get('X-Forwarded-Proto', 'http')
-    port = request.headers.get('X-Forwarded-Port', 443 if scheme == 'https' else 80)
 
-    url = request.route_url(route, _port=port, _scheme=scheme)
+    parsed = urlparse(request.host_url)
+
+    scheme = request.headers.get('X-Forwarded-Proto', parsed.scheme)
+    port = request.headers.get('X-Forwarded-Port', parsed.port)
+    host = request.headers.get('X-Forwarded-Host', parsed.hostname)
+
+    if port is not None:
+        url = request.route_url(route, _port=port, _scheme=scheme)
+    else:
+        url = request.route_url(route, _host=host, _scheme=scheme)
+
+    log.debug(url)
 
     return HTTPFound(location=url)
