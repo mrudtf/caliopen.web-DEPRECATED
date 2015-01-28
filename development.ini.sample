@@ -44,7 +44,7 @@ kvs.session = {"kvs": "redis",
 # UI related settings
 ###
 
-caliopen.assets.path = %(here)s/../ui/build/
+caliopen.assets.path = %(here)s/../frontend/dist/
 
 caliopen.config =
     global:%(here)s/caliopen.yaml
