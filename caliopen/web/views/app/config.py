@@ -12,7 +12,7 @@ def includeme(config):
     """
     log.debug('Declare open.web.app routes')
 
-    config.add_route('app.index', '/app/')
+    config.add_route('app.index', '/app/*optional')
     config.add_route('app.public', '/')
 
     config.scan('.index')
