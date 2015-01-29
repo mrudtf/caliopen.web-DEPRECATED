@@ -29,5 +29,7 @@ def includeme(config):
     assets_path = settings['caliopen.assets.path']
     config.add_static_view(name='frontend', path=assets_path)
     log.debug('Will serve "frontend" assets from %s' % assets_path)
+    frontend_template_path = assets_path
+    config.add_jinja2_search_path(frontend_template_path, name='.html')
 
     config.add_notfound_view(notfound, append_slash=True)

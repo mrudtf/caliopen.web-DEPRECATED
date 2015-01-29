@@ -67,7 +67,7 @@ def authenticated_index_api(request):
 
 
 
-@view_config(request_method='GET', renderer='app/index.html',
+@view_config(request_method='GET', renderer='frontend/index.html',
              route_name='app.index', accept='text/html')
 def authenticated_index_html(request):
     """
