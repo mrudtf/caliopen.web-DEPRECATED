@@ -76,10 +76,10 @@ def _validate_authentication_credentials(params):
         raise ValidationError(e.messages)
 
     except CredentialException, e:
-        raise CredentialException
+        raise e
 
     except Exception, e:
-        log.debug(exc)
+        log.debug(e)
         # It appears the User.authenticate method throws an Exception
         # error if password does not match
         raise e
@@ -106,7 +106,6 @@ def validate(username, password):
 
     except (ValidationError), exc:
         errors = exc.messages
-        log.debug(exc)
         return authentication(success=False, errors=errors, user=None)
 
     except (CredentialException), exc:
