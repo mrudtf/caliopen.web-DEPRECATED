@@ -9,7 +9,7 @@ from pyramid.httpexceptions import HTTPFound
 import logging
 log = logging.getLogger(__name__)
 
-def redirect(request, route):
+def redirect(request, route, **kwargs):
     """Redirect to route name
 
     :request: pyramid.request
@@ -24,10 +24,10 @@ def redirect(request, route):
     port = request.headers.get('X-Forwarded-Port', parsed.port)
     host = request.headers.get('X-Forwarded-Host', parsed.hostname)
 
-    if port is not None:
-        url = request.route_url(route, _port=port, _scheme=scheme)
+    if port:
+        url = request.route_url(route, _port=port, _host=host, _scheme=scheme, **kwargs)
     else:
-        url = request.route_url(route, _host=host, _scheme=scheme)
+        url = request.route_url(route, _host=host, _scheme=scheme, **kwargs)
 
     log.debug(url)
 

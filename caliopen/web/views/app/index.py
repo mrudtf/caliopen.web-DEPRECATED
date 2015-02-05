@@ -98,8 +98,6 @@ def public_index(request):
     """
 
     if is_user_authenticated(request):
-        route = 'app.index';
-    else:
-        route = 'user.signin';
+        return redirect(request, 'app.index', optional='');
 
-    return redirect(request, route)
+    return redirect(request, 'user.signin');
