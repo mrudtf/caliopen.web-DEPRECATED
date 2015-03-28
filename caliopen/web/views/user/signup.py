@@ -1,16 +1,16 @@
-#-*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 
 from __future__ import unicode_literals
 
-from collections import namedtuple;
+from collections import namedtuple
 
 from pyramid.view import view_defaults
 from pyramid.view import view_config
 
 from caliopen.web.views import redirect
-from caliopen.core.user import User
-from caliopen.core.parameters.user import NewUser
-from caliopen.core.parameters.contact import NewContact
+from caliopen.base.core.user import User
+from caliopen.base.parameters.user import NewUser
+from caliopen.base.parameters.contact import NewContact
 
 import logging
 log = logging.getLogger(__name__)
