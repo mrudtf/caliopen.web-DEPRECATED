@@ -3,12 +3,16 @@
 from __future__ import unicode_literals
 
 
+import logging
+log = logging.getLogger(__name__)
+
 def includeme(config):
     """
-    Serve the Angular app.
+    Declaration related to application general behaviour
     """
-    config.add_route('app.index', '/')
-    config.add_view('caliopen.web.views.app.index',
-                    route_name='app.index',
-                    renderer='index.html',
-                    )
+    log.debug('Declare open.web.app routes')
+
+    config.add_route('app.index', '/app/*optional')
+    config.add_route('app.public', '/')
+
+    config.scan('.index')

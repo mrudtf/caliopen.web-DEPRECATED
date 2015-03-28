@@ -1,0 +1,20 @@
+language: python
+env:
+  - CALIOPEN_DEPS="config storage core messaging api"
+python:
+  - "2.7"
+  - "3.2"
+  - "3.3"
+  - "3.4"
+
+before_install:
+  # Clone dependencies
+  - "mkdir dependencies"
+  - "for dep in $CALIOPEN_DEPS ; do git clone https://github.com/CaliOpen/caliopen.${dep}.git dependencies/${dep} ; done"
+install:
+  # Install dependencies
+  - "for dep in $CALIOPEN_DEPS ; do cd dependencies/${dep} ; pip install -e \".[dev,test]\" ; cd ../../ ; done"
+  - "pip install -e \".[dev,test]\""
+
+# command to run tests
+script: nosetests -sxv caliopen/web/tests/*.py

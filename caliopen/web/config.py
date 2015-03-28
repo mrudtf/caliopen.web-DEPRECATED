@@ -6,6 +6,17 @@ from os.path import abspath
 from os.path import dirname
 from os.path import join
 
+from pyramid.httpexceptions import HTTPNotFound
+
+import logging
+log = logging.getLogger(__name__)
+
+def notfound(request):
+    """
+    A default view to handle not found exception
+    """
+    return HTTPNotFound('Not found.')
+
 def includeme(config):
     settings = config.registry.settings
 
@@ -14,11 +25,11 @@ def includeme(config):
     template_path = join(dirname(abspath(__file__)), 'templates')
     config.add_jinja2_search_path(template_path, name='.html')
 
-    # XXX should be removed
-    # configure templates dir (angular build dir)
-    
-    template_path = settings['caliopen.ng.path']
-    config.add_jinja2_search_path(template_path, name='.html')
+    # Retrieve ember assets path.
+    assets_path = settings['caliopen.assets.path']
+    config.add_static_view(name='frontend', path=assets_path)
+    log.debug('Will serve "frontend" assets from %s' % assets_path)
+    frontend_template_path = assets_path
+    config.add_jinja2_search_path(frontend_template_path, name='.html')
 
-    # configure static dir on the same dir (angular build dir)
-    config.add_static_view('/static', template_path)
+    config.add_notfound_view(notfound, append_slash=True)

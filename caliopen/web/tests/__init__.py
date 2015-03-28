@@ -1,3 +1,24 @@
-# To query the API with curl:
+from __future__ import unicode_literals
 
-# curl -X POST -H "Content-Type: application/json" -d '{"login": "aze", "password": "aze"}' http://localhost:6543/api/mock/sessions
+import os
+
+from caliopen.config import Configuration
+from caliopen.core.config import includeme
+
+
+# Core objects do need implmeentations to be registered
+# If no implementation is registered, an exception is raised.
+
+# This is required prior to any `caliopen.core` object inclusion
+
+# This is a (ugly) way to have everything executed
+# before the core objects imports
+
+# Load config file
+pwd = os.path.dirname(os.path.realpath(__file__))
+DEFAULT_CONFIG_FILE = '%s/../../../caliopen.yaml' % pwd
+Configuration.load(os.environ.get('CALIOPEN_CONFIG', DEFAULT_CONFIG_FILE),
+        'global')
+
+# register implmentations
+includeme()
