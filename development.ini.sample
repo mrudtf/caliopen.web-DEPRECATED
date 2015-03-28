@@ -16,6 +16,7 @@ pyramid.includes =
     pyramid_kvs
     cornice
     caliopen.api
+    caliopen.api.message
     caliopen.web
     caliopen.web.views.app
     caliopen.web.views.user
