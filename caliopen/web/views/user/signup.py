@@ -8,9 +8,9 @@ from pyramid.view import view_defaults
 from pyramid.view import view_config
 
 from caliopen.web.views import redirect
-from caliopen.base.core.user import User
-from caliopen.base.parameters.user import NewUser
-from caliopen.base.parameters.contact import NewContact
+from caliopen.base.user.core import User
+from caliopen.base.user.parameters import NewUser
+from caliopen.base.user.parameters import NewContact
 
 import logging
 log = logging.getLogger(__name__)
