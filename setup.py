@@ -10,16 +10,9 @@ README = open(os.path.join(here, 'README.rst')).read()
 CHANGES = open(os.path.join(here, 'CHANGES.rst')).read()
 
 requires = [
-    'pyramid',
     'pyramid_jinja2',
-    'zope.interface',
-    'cornice',
-    'simplejson',
-    'waitress',  # you can choose your own wsgi server, you know
-    'caliopen.config',
-    'caliopen.api',
-    # 'git+https://github.com/Gandi/pyramid_kvs.git',
-    # 'git+https://github.com/ekini/gsmtpd.git'  # OK I shouldn't, or not ...
+    'caliopen.api.base',
+    'pyramid_kvs',
     ]
 
 tests_require = ['nose', 'coverage']
@@ -44,14 +37,15 @@ setup(name='caliopen.web',
       description='Caliopen HTTP Server',
       long_description=README + '\n\n' + CHANGES,
       classifiers=[
-        "Programming Language :: Python",
-        "Framework :: Pyramid",
-        "Topic :: Internet :: WWW/HTTP",
-        "Topic :: Internet :: WWW/HTTP :: WSGI :: Application",
-        ],
+          "Programming Language :: Python",
+          "Framework :: Pyramid",
+          "Topic :: Internet :: WWW/HTTP",
+          "Topic :: Internet :: WWW/HTTP :: WSGI :: Application",
+      ],
       author='Caliopen Contributors',
       author_email='',
-      url='https://github.com/caliopen',
+      url='https://github.com/Caliopen/caliopen.web',
+      license='AGPLv3',
       keywords='web pyramid',
       packages=find_packages(),
       include_package_data=True,

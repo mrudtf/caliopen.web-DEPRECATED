@@ -14,9 +14,9 @@ from schematics.exceptions import ValidationError
 
 from collections import namedtuple;
 
-from caliopen.core.user import User
-from caliopen.core.user import ReturnUser
-from caliopen.core.user import CredentialException
+from caliopen.base.user.core import User
+from caliopen.base.user.returns import ReturnUser
+from caliopen.base.exception import CredentialException
 
 from pyramid.i18n import TranslationString
 
