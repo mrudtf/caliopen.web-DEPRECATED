@@ -47,7 +47,7 @@ kvs.session = {"kvs": "redis",
 caliopen.assets.path = %(here)s/../frontend/dist/frontend/
 
 caliopen.config =
-    global:%(here)s/caliopen.yaml
+    global:%(here)s/../base/caliopen.yaml.template
 
 ###
 # wsgi server configuration
