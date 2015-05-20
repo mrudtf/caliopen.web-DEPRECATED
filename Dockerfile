@@ -20,7 +20,7 @@ ADD . /srv/caliopen.web
 WORKDIR /srv/caliopen.web
 
 # Copy configuration
-COPY caliopen.yaml.template caliopen.yaml
+ADD  https://raw.githubusercontent.com/CaliOpen/caliopen.base/master/caliopen.yaml.template caliopen.yaml
 
 VOLUME ['/srv/caliopen.web']
 
