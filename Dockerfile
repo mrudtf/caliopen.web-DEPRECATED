@@ -31,6 +31,7 @@ RUN pip install git+https://github.com/Caliopen/caliopen.base.git
 RUN pip install git+https://github.com/Caliopen/caliopen.base.user.git
 RUN pip install git+https://github.com/Caliopen/caliopen.base.message.git
 RUN pip install git+https://github.com/Caliopen/caliopen.api.base.git
+RUN pip install git+https://github.com/Caliopen/caliopen.api.user.git
 RUN pip install git+https://github.com/Caliopen/caliopen.api.message.git
 
 # Install
@@ -45,4 +46,4 @@ RUN     useradd docker
 EXPOSE 6543
 
 
-CMD [ "pserve", "development.init.template" ]
+CMD [ "pserve", "development.ini.sample" ]
