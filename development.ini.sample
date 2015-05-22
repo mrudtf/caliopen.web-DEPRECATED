@@ -15,7 +15,8 @@ pyramid.includes =
     pyramid_jinja2
     pyramid_kvs
     cornice
-    caliopen.api
+    caliopen.api.base
+    caliopen.api.user
     caliopen.api.message
     caliopen.web
     caliopen.web.views.app
@@ -47,7 +48,7 @@ kvs.session = {"kvs": "redis",
 caliopen.assets.path = %(here)s/../frontend/dist/frontend/
 
 caliopen.config =
-    global:%(here)s/../base/caliopen.yaml.template
+    global:%(here)s/caliopen.yaml
 
 ###
 # wsgi server configuration
