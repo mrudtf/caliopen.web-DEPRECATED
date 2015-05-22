@@ -11,7 +11,7 @@ CHANGES = open(os.path.join(here, 'CHANGES.rst')).read()
 
 requires = [
     'pyramid_jinja2',
-    'caliopen.api.base',
+    'caliopen.api.user',
     'pyramid_kvs',
     ]
 
