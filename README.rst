@@ -14,14 +14,16 @@ and development instructions.
 Installation
 ------------
 
-:::
-    Discalaimer: Those instructions are for this module only. If you are looking
+::
+
+    Disclaimer: Those instructions are for this module only. If you are looking
     for how to install a full CaliOpen service, you should go to
     `caliopen.github.io <http://caliopen.github.io/>`_
 
 To install local dependencies, use `pip <https://pip.pypa.io/en/latest/>`_:
 
-:::
+::
+
     pip install -e ".[dev,test]"
 
 Note that caliopen.web depends on:
@@ -37,6 +39,7 @@ Tests
 
 Tests are launched using `nose <https://nose.readthedocs.org/en/latest/>`_.
 
-:::
+::
+
     nosetests -sxv caliopen/web/tests/*.py
 
