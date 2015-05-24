@@ -9,6 +9,8 @@ RUN     apt-get install -y \
       python-dev \
       python-pip \
       libffi-dev \
+      libev4 \
+      libev-dev \
       git
 
 
