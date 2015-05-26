@@ -17,22 +17,26 @@ def notfound(request):
     """
     return HTTPNotFound('Not found.')
 
-def includeme(config):
-    settings = config.registry.settings
+def includeme(config=None):
+    if config:
+        settings = config.registry.settings
 
-    # Configure local templates
-    config.add_jinja2_renderer('.html')
-    template_path = join(dirname(abspath(__file__)), 'templates')
-    config.add_jinja2_search_path(template_path, name='.html')
+        # Configure local templates
+        template_path = join(dirname(abspath(__file__)), 'templates')
+        assets_path = settings['caliopen.assets.path']
+        frontend_template_path = dirname(dirname(assets_path))
 
-    # Retrieve ember assets path.
-    # templates should be located in a directory named "frontend" as this is
-    # used as template prefix.
-    assets_path = settings['caliopen.assets.path']
-    config.add_static_view(name='/app/', path=assets_path)
-    log.debug('Will serve "frontend" assets from %s' % assets_path)
-    # index is prefixed by frontend
-    frontend_template_path = dirname(dirname(assets_path))
-    config.add_jinja2_search_path(frontend_template_path, name='.html')
+        config.add_jinja2_renderer('.html')
+        config.add_jinja2_search_path(template_path, name='.html')
 
-    config.add_notfound_view(notfound, append_slash=True)
+        # Retrieve ember assets path.
+        # templates should be located in a directory named "frontend" as
+        # this is used as template prefix.
+        config.add_static_view(name='/app/', path=assets_path)
+        log.debug('Will serve "frontend" assets from %s' % assets_path)
+        # index is prefixed by frontend
+
+        config.add_jinja2_search_path(frontend_template_path, name='.html')
+
+        config.add_notfound_view(notfound, append_slash=True)
+

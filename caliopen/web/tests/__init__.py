@@ -2,8 +2,8 @@ from __future__ import unicode_literals
 
 import os
 
-from caliopen.config import Configuration
-from caliopen.core.config import includeme
+from caliopen.base.config import Configuration
+from caliopen.web.config import includeme
 
 
 # Core objects do need implmeentations to be registered
@@ -16,7 +16,7 @@ from caliopen.core.config import includeme
 
 # Load config file
 pwd = os.path.dirname(os.path.realpath(__file__))
-DEFAULT_CONFIG_FILE = '%s/../../../caliopen.yaml' % pwd
+DEFAULT_CONFIG_FILE = '%s/../../../../base/caliopen.yaml.template' % pwd
 Configuration.load(os.environ.get('CALIOPEN_CONFIG', DEFAULT_CONFIG_FILE),
         'global')
 

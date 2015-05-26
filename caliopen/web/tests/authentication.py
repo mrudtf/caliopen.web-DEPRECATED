@@ -5,7 +5,7 @@ import json
 
 from pyramid import testing
 from schematics.exceptions import ValidationError
-from caliopen.core.user import CredentialException
+from caliopen.base.exception import CredentialException
 
 from caliopen.web.authentication.validation import validate
 from .compat import mock

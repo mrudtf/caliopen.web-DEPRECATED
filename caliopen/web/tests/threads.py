@@ -5,7 +5,7 @@ import json
 
 from pyramid import testing
 
-from caliopen.api.thread import Thread
+from caliopen.api.message.thread import Thread
 
 
 @unittest.skip("under heavy refactoring")

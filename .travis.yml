@@ -1,6 +1,6 @@
 language: python
 env:
-  - CALIOPEN_DEPS="config storage core messaging api"
+  - CALIOPEN_DEPS="base base.user base.message api.base api.user api.message"
 python:
   - "2.7"
   - "3.2"
