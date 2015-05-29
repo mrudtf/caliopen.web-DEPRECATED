@@ -1,7 +1,6 @@
 language: python
 env:
-  - CALIOPEN_DEPS="base base.user base.message api.base api.user api.message"
-  - CALIOPEN_CONFIG="./caliopen.yaml"
+  - CALIOPEN_DEPS="base base.user base.message api.base api.user api.message" CALIOPEN_CONFIG="./caliopen.yaml"
 python:
   - "2.7"
   - "3.2"
