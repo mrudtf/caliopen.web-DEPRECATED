@@ -3,9 +3,9 @@ env:
   - CALIOPEN_DEPS="base base.user base.message api.base api.user api.message" CALIOPEN_CONFIG="./caliopen.yaml"
 python:
   - "2.7"
-  - "3.2"
-  - "3.3"
-  - "3.4"
+#  - "3.2"
+#  - "3.3"
+#  - "3.4"
 
 before_install:
   # Clone dependencies
