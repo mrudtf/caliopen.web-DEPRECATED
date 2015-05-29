@@ -1,6 +1,7 @@
 language: python
 env:
   - CALIOPEN_DEPS="base base.user base.message api.base api.user api.message"
+  - CALIOPEN_CONFIG="./caliopen.yaml"
 python:
   - "2.7"
   - "3.2"
@@ -15,6 +16,8 @@ install:
   # Install dependencies
   - "for dep in $CALIOPEN_DEPS ; do cd dependencies/${dep} ; pip install -e \".[dev,test]\" ; cd ../../ ; done"
   - "pip install -e \".[dev,test]\""
+  # Copy template configuration file
+  - "cp dependencies/base/caliopen.yaml.template $CALIOPEN_CONFIG"
 
 # command to run tests
 script: nosetests -sxv caliopen/web/tests/*.py
