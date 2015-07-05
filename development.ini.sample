@@ -28,6 +28,9 @@ jinja2.filters =
     static_url = pyramid_jinja2.filters:static_url_filter
 
 
+kvs.cache = {"kvs": "redis",
+             "ttl": 3600,
+             "key_prefix": "tokens::"}
 
 kvs.session = {"kvs": "redis",
                "key_name": "session_id",
