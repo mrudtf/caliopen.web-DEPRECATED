@@ -28,11 +28,12 @@ To install local dependencies, use `pip <https://pip.pypa.io/en/latest/>`_:
 
 Note that caliopen.web depends on:
 
-* `caliopen.config <https://github.com/caliopen/caliopen.config>`_
-* `caliopen.storage <https://github.com/caliopen/caliopen.storage>`_,
-* `caliopen.core <https://github.com/caliopen/caliopen.core>`_,
-* `caliopen.messaging <https://github.com/caliopen/caliopen.messaging>`_,
-* `caliopen.api <https://github.com/caliopen/caliopen.api>`_,
+* `caliopen.base <https://github.com/caliopen/caliopen.base>`_
+* `caliopen.base.user <https://github.com/caliopen/caliopen.base.user>`_,
+* `caliopen.base.message <https://github.com/caliopen/caliopen.base.message>`_,
+* `caliopen.api.base <https://github.com/caliopen/caliopen.api.base>`_,
+* `caliopen.api.user <https://github.com/caliopen/caliopen.api.user>`_,
+* `caliopen.api.message <https://github.com/caliopen/caliopen.api.message>`_,
 
 Tests
 -----
