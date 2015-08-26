@@ -12,7 +12,6 @@ bcrypt==1.0.2
 cffi==0.8.2
 cornice==0.16.2
 cql==1.4.0
-cqlengine==0.12.0
 dateutils==0.6.6
 gevent==1.0.1
 greenlet==0.4.2
