@@ -1,3 +1,12 @@
+DEPRECATION WARNING
+===================
+
+This pyramid application had been split in two distincts components:
+
+* `caliopen.api <https://github.com/caliopen/caliopen.api>`_, pyramid application for only API
+* `caliopen.web <https://github.com/caliopen/caliopen.web>`_, node.js application for web pages
+
+
 caliopen.web
 ============
 
