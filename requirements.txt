@@ -25,7 +25,7 @@ python-memcached==1.53
 pytz==2014.4
 redis==2.10.1
 repoze.lru==0.6
-requests==2.3.0
+requests==2.20.0
 simplejson==3.5.2
 six==1.7.2
 thrift==0.9.1
